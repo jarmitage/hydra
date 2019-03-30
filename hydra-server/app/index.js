@@ -11,6 +11,28 @@ function init () {
   window.pb = pb
   window.P5 = P5
 
+  window.p1 = new P5()
+
+  // add lyrics to global context
+  window.lyrics = {}
+  fetch('../lyrics/offer.json')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      window.lyrics = data;
+    });
+
+  // add song sections to global context
+  window.sections = {}
+  fetch('../lyrics/offer_sections.json')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      window.sections = data;
+    });
+
   // initialize elements
   var canvas = Canvas(document.getElementById('hydra-canvas'))
   canvas.size()
