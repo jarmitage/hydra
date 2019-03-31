@@ -1,0 +1,18 @@
+{
+	"portrait"   : {
+		"src": "full_take_001_1.0x_portrait_trim_TD_trim",
+		"offset": 2.3
+	},
+	"portrait2x" : {
+		"src": "full_take_006_0.5x_portrait_trim_TD",
+		"offset": 18
+	},
+	"body2x"     : {
+		"src": "full_take_009_0.5x_full_body_trim_TD",
+		"offset": 1
+	},
+	"cables"     : {
+		"src": "full_take_010_body_cables_trim_TD",
+		"offset": 0.5
+	}
+}
