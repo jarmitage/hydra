@@ -15,10 +15,6 @@ function init () {
   //  Begin custom 1
   // ------------------------------------------------------------------------
 
-  window.p1 = new P5()
-  p1.pixelDensity(1)
-  p1.hide()
-
   // add lyrics to global context
   window.lyrics = {}
   fetch('../json/lyrics.json')
@@ -74,8 +70,6 @@ function init () {
   snd.src = '../snd/offer.wav'
   window.snd = snd
 
-  window.subsRect = {'x':p1.windowWidth*0.05,'y':p1.windowHeight*0.8,'w':p1.windowWidth*0.9, 'h':100}
-
   // ------------------------------------------------------------------------
   //  End custom 1
   // ------------------------------------------------------------------------
@@ -92,18 +86,27 @@ function init () {
   //  Begin custom 2
   // ------------------------------------------------------------------------
 
+  window.p1 = new P5()
+  window.p1.pixelDensity(1)
+  window.p1.hide()
+
   s1.init({src: p1.canvas})
   window.subs = s1
+  
+  window.subsRect = {'x':p1.windowWidth*0.05,'y':p1.windowHeight*0.8,'w':p1.windowWidth*0.9, 'h':100}
+
+  // p1.textFont(p1.loadFont ('fonts/Modak.ttf'));
+  p1.textFont(p1.loadFont ('fonts/LaBelleAurore.ttf'));
 
   p1.draw = () => {
     p1.clear();
-    p1.textSize(66);
+    p1.textSize(90);
     p1.textAlign(p1.CENTER);
-    p1.strokeWeight(0);
-    p1.fill(1,0,0,127);
-    p1.rect(subsRect.x,subsRect.y,subsRect.w,subsRect.h);
+    // p1.strokeWeight(0);
+    // p1.fill(0,0,0,127);
+    // p1.rect(subsRect.x,subsRect.y,subsRect.w,subsRect.h);
     p1.fill(255);
-    p1.text(getLyricAtTime(snd.currentTime), p1.windowWidth/2, subsRect.y);
+    p1.text(getLyricAtTime(snd.currentTime), p1.windowWidth/2, subsRect.y+70);
   }
 
   window.loadVideo = (video) => {
