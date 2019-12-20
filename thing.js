@@ -1,0 +1,25 @@
+
+
+s0.initScreen(0)
+
+osc().out(o1)
+osc().out(o0)
+noise(sin(50,100,0.25),[1,2,4,8].fast(0.25))
+  .modulate(noise())
+  .out(o2)
+solid()
+  .add(src(o0).modulateRotate(noise(() => 10*a.fft[2],0.1)),1)
+  .rotate(()=>a.fft[2]/10,0)
+  .modulateRotate(src(o1),[0.1,1.5,0.5,2.3].fast(0.125),[-0.05,0.05].fast(0.25))
+  .mult(osc(3.4375,[-0.5,0,-1,0,-2].fast(0.125),0).kaleid(25),1)
+  .modulate(noise(2,0.05),0.05)
+  .scale(()=>1+a.fft[4])
+  .diff(src(o1).scale(0.99,()=>1+a.fft[2]/50,()=>1+a.fft[3]/50))
+  .out(o1)
+render(o1)
+
+a.hide()
+a.setBins(8)
+a.setCutoff(2)
+a.setScale(1)
+a.setSmooth(0.47)

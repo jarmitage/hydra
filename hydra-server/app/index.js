@@ -16,59 +16,59 @@ function init () {
   // ------------------------------------------------------------------------
 
   // add lyrics to global context
-  window.lyrics = {}
-  fetch('../json/lyrics.json')
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      window.lyrics = data;
-      console.log('lyrics.json',window.lyrics)
-    });
+  // window.lyrics = {}
+  // fetch('../json/lyrics.json')
+  //   .then(function(response) {
+  //     return response.json();
+  //   })
+  //   .then(function(data) {
+  //     window.lyrics = data;
+  //     console.log('lyrics.json',window.lyrics)
+  //   });
 
   // add song sections to global context
-  window.sections = {}
-  fetch('../json/sections.json')
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      window.sections = data;
-      console.log('sections.json',window.sections)
-    });
+  // window.sections = {}
+  // fetch('../json/sections.json')
+  //   .then(function(response) {
+  //     return response.json();
+  //   })
+  //   .then(function(data) {
+  //     window.sections = data;
+  //     console.log('sections.json',window.sections)
+  //   });
 
-  window.videos = {}
-  fetch('../json/videos.json')
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      window.videos = data;
-      console.log('videos.json',window.videos)
-    });
+  // window.videos = {}
+  // fetch('../json/videos.json')
+  //   .then(function(response) {
+  //     return response.json();
+  //   })
+  //   .then(function(data) {
+  //     window.videos = data;
+  //     console.log('videos.json',window.videos)
+  //   });
 
 
-  window.getLyricAtTime = (time, offset=0) => {
-    let text = ""
-    let offsetTime = time + offset
-    for (var i = 0; i < lyrics.length; i++)
-      if (lyrics[i].start < offsetTime && offsetTime < lyrics[i].end)
-        text = lyrics[i].text;
-    return text;
-  }
+  // window.getLyricAtTime = (time, offset=0) => {
+  //   let text = ""
+  //   let offsetTime = time + offset
+  //   for (var i = 0; i < lyrics.length; i++)
+  //     if (lyrics[i].start < offsetTime && offsetTime < lyrics[i].end)
+  //       text = lyrics[i].text;
+  //   return text;
+  // }
 
-  window.addVideo = (video) => {
-    vid = document.createElement('video')
-    vid.loop = true
-    vid.muted = true
-    vid.src = '../vid/'+video+'.mp4'
-    return vid
-  }
+  // window.addVideo = (video) => {
+  //   vid = document.createElement('video')
+  //   vid.loop = true
+  //   vid.muted = true
+  //   vid.src = '../vid/'+video+'.mp4'
+  //   return vid
+  // }
 
-  snd = document.createElement('audio')
-  snd.loop = true
-  snd.src = '../snd/offer.wav'
-  window.snd = snd
+  // snd = document.createElement('audio')
+  // snd.loop = true
+  // snd.src = '../snd/offer.wav'
+  // window.snd = snd
 
   // ------------------------------------------------------------------------
   //  End custom 1
@@ -91,46 +91,46 @@ function init () {
   window.p1.hide()
 
   s1.init({src: p1.canvas})
-  window.subs = s1
+  // window.subs = s1
   
-  window.subsRect = {'x':p1.windowWidth*0.05,'y':p1.windowHeight*0.8,'w':p1.windowWidth*0.9, 'h':100}
+  // window.subsRect = {'x':p1.windowWidth*0.05,'y':p1.windowHeight*0.8,'w':p1.windowWidth*0.9, 'h':100}
 
   // p1.textFont(p1.loadFont ('fonts/Modak.ttf'));
-  p1.textFont(p1.loadFont ('fonts/LaBelleAurore.ttf'));
+  // p1.textFont(p1.loadFont ('fonts/LaBelleAurore.ttf'));
 
-  p1.draw = () => {
-    p1.clear();
-    p1.textSize(90);
-    p1.textAlign(p1.CENTER);
-    // p1.strokeWeight(0);
-    // p1.fill(0,0,0,127);
-    // p1.rect(subsRect.x,subsRect.y,subsRect.w,subsRect.h);
-    p1.fill(255);
-    p1.text(getLyricAtTime(snd.currentTime), p1.windowWidth/2, subsRect.y+70);
-  }
+  // p1.draw = () => {
+  //   p1.clear();
+  //   p1.textSize(90);
+  //   p1.textAlign(p1.CENTER);
+  //   // p1.strokeWeight(0);
+  //   // p1.fill(0,0,0,127);
+  //   // p1.rect(subsRect.x,subsRect.y,subsRect.w,subsRect.h);
+  //   p1.fill(255);
+  //   p1.text(getLyricAtTime(snd.currentTime), p1.windowWidth/2, subsRect.y+70);
+  // }
 
-  window.loadVideo = (video) => {
-    window.snd.pause()
-    window.snd.currentTime = 0
-    window.vidSrc = addVideo(video)
-    s0.init({src: window.vidSrc})
-    window.vid = s0
-  }
+  // window.loadVideo = (video) => {
+  //   window.snd.pause()
+  //   window.snd.currentTime = 0
+  //   window.vidSrc = addVideo(video)
+  //   s0.init({src: window.vidSrc})
+  //   window.vid = s0
+  // }
 
-  window.setTime = (time=0,offset=0) => {
-    window.snd.currentTime = time
-    window.vidSrc.currentTime = time + offset
-  }
+  // window.setTime = (time=0,offset=0) => {
+  //   window.snd.currentTime = time
+  //   window.vidSrc.currentTime = time + offset
+  // }
 
-  window.play = () => {
-    window.snd.play()
-    window.vidSrc.play()
-  }
+  // window.play = () => {
+  //   window.snd.play()
+  //   window.vidSrc.play()
+  // }
 
-  window.pause = () => {
-    window.snd.pause()
-    window.vidSrc.pause()
-  }
+  // window.pause = () => {
+  //   window.snd.pause()
+  //   window.vidSrc.pause()
+  // }
 
   window.sin = (min=0,max=1,freq=1) => ({time}) => Math.sin(time*freq) * max + min
   window.sq = (min=0,max=1,freq=1) => ({time}) => ((Math.sin(time*freq) < 0) ? 0 : 1) * max + min

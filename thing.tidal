@@ -1,0 +1,29 @@
+
+
+
+do
+  let tick1 = ev "<2 3>" (fa "<2 4 6>" . (|+| sp (rtrif 1 2 0.25 * rsinf 1 3 0.125)))
+      tick1' = ev "<2 3>" (fa "<2 4 6>" . (|-| sp (rtrif 1 2 0.25 * rsinf 1 3 0.125)))
+      tick2 = ev "<2 3>" (fa "<2 4 6>" . (|+| sp (rtrif (-2) 3 0.5 * rsinf 2 4 0.25)))
+  let p1 = fa 1 $ s "<pcshaker   pcshaker pcbur:5>*8"
+      p2 = fa 0.5 $ s "<pcshaker   pcbur:5  pcshaker>*8"
+      p3 = fa 0.25 $ s "<pcshaker:8 pcbur:5  pcshaker:2>*16"
+  d1 . m . fa 8 $ fa (sl 4 $ "0.25 0.5 1.25 0.75 0.5")
+     -- . (# hpf' (rsinf 0.1e3 1e3 0.125) 0.2)
+     -- . (# lpf "10e3:0.2") . (# phaser' 10 0.4)
+     . tick1
+     . chunk 2 (# sp "1 0.25 0.5 0.75")
+     -- . chunk 4 (# legato 4)
+     -- . jux (|*| sp (-1))
+     -- . inside 0.5 (hurry "-1 -2 -4 -8")
+     . (|+| ac (0.1)) . (|+| sp 2)
+     . inside "<2 4 6 8>" (sl 2 . tick2)
+     . iter "<1 2 4 6>"
+     . str "<12 16 24 32>" . chop "<1 2 4>"
+     -- . (|-| g 0.2)
+     . whenmod 4 3 (const $ s "")
+     $ stack [
+          p1 # go' (rg 0.5 1.0 cos) 0 # pan 1
+        , p2 # go' (rg 0.5 0.9 sin) 1 # pan 0
+        , p3 # go' 0.8 2              # pan (sqf 8)
+       ]
